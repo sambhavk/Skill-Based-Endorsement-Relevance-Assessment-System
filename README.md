@@ -1,2 +1,26 @@
 # Skill-Based-Endorsement-Relevance-Assessment-System
-a system that can analyze a set of professional networking platforms profiles, the skills endorsed on those profiles, the endorsers, and the endorsers' profiles
+A system that can analyze a set of professional networking platforms profiles, the skills endorsed on those profiles, the endorsers, and the endorsers' profiles
+
+
+## Set up on local
+### Requirements
+1. Intellij IDE
+2. Open JDK >= 17
+3. Docker
+4. Maven - installed locally (or installed usually with IntelliJ)
+
+### Setup IDE
+Go to Run -> Edit Configurations -> Environment Variables:
+add the following:
+```
+SPRING_PROFILES_ACTIVE=local
+```
+
+### Setup local db on docker instance
+1. bring up local postgres docker instance
+
+   ```docker-compose up -d```
+
+2. Apply dummy data to local db by copying insert statements from ./scripts/populateLocalDb.sql file and run it in your local db
+   
+* run the application from IDE

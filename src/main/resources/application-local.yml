@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${RDS_HOSTNAME:localhost}:${RDS_PORT:5432}/${RDS_DB_NAME:skill_based_endorsement_relevance_system}
+    username: ${RDS_USERNAME:postgres}
+    password: ${RDS_PASSWORD:mysecretpassword}
+  jpa:
+    show-sql: true

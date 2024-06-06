@@ -1,8 +1,10 @@
 package com.fabhotels.round2.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class EndorsementResponseDto {
     private String skill;
     private Float actualScore;

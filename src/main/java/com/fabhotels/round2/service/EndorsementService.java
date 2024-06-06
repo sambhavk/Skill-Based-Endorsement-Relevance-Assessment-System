@@ -1,64 +1,57 @@
 package com.fabhotels.round2.service;
 
-import com.fabhotels.round2.domain.Endorsement;
-import com.fabhotels.round2.domain.UserProfile;
+import com.fabhotels.round2.dto.EndorsementDto;
 import com.fabhotels.round2.dto.EndorsementResponseDto;
 import com.fabhotels.round2.dto.SkillEndorsementsDto;
-import com.fabhotels.round2.persistence.EndorsementRepository;
-import com.fabhotels.round2.persistence.UserProfileRepository;
-import jakarta.transaction.Transactional;
+import com.fabhotels.round2.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class EndorsementService {
-    private final EndorsementRepository endorsementRepository;
-    private final UserProfileRepository userProfileRepository;
     private final WeightService weightService;
+    private final UserRepository userRepository;
 
-    public EndorsementService(EndorsementRepository endorsementRepository,
-                              UserProfileRepository userProfileRepository,
-                              WeightService weightService) {
-        this.endorsementRepository = endorsementRepository;
-        this.userProfileRepository = userProfileRepository;
+    public EndorsementService(WeightService weightService,
+                              UserRepository userRepository) {
         this.weightService = weightService;
+        this.userRepository = userRepository;
     }
 
-    public List<SkillEndorsementsDto> getEndorsementsForUser(Long userId) {
-        List<Endorsement> endorsements = endorsementRepository.findByEndorsee(userId);
+    public List<SkillEndorsementsDto> getEndorsementsForUser(String userId) {
+        List<Map<String, Object>> rawEndorsements = userRepository.getEndorsementsReceived(userId);
 
-        return endorsements.stream()
-                .collect(Collectors.groupingBy(Endorsement::getSkill))
-                .entrySet()
-                .stream()
+        Map<String, List<EndorsementDto>> groupedBySkill = rawEndorsements.stream()
+                .map(e -> new EndorsementDto(
+                        (String) e.get("reviewer"),
+                        (String) e.get("score"),
+                        (String) e.get("systemAdjustedScore"),
+                        (String) e.get("reason"),
+                        (String) e.get("skill")
+                ))
+                .collect(Collectors.groupingBy(EndorsementDto::getSkill));
+
+        return groupedBySkill.entrySet().stream()
                 .map(entry -> new SkillEndorsementsDto(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
     }
 
-    @Transactional
-    public EndorsementResponseDto endorseUser(Long revieweeUserId, Long reviewerUserId, String skill, Float score) {
-        UserProfile reviewee = userProfileRepository.findById(revieweeUserId).orElseThrow(() -> new RuntimeException("Reviewee not found"));
-        UserProfile reviewer = userProfileRepository.findById(reviewerUserId).orElseThrow(() -> new RuntimeException("Reviewer not found"));
+    @Transactional(value = "transactionManager")
+    public EndorsementResponseDto endorseUser(String reviewee, String reviewer, String skill, Float score) {
 
-        Endorsement endorsement = new Endorsement();
-        float weight = weightService.calculateWeight(reviewee, reviewer, skill, endorsement);
+        EndorsementResponseDto endorsementResponseDto = new EndorsementResponseDto();
+        float weight = weightService.calculateWeight(skill, reviewer, reviewee, endorsementResponseDto);
         float adjustedScore = score * weight;
+        userRepository.createEndorsement(reviewer, reviewee, score, skill, adjustedScore, endorsementResponseDto.getReason());
 
-        endorsement.setEndorsee(reviewee.getUid());
-        endorsement.setEndorser(reviewer.getUid());
-        endorsement.setSkill(skill);
-        endorsement.setActualScore(score);
-        endorsement.setSystemCalculatedWeight(adjustedScore);
-        endorsement.setAudCreatedBy("system");
-        endorsement.setAudCreatedDate(LocalDateTime.now());
-        endorsement.setAudLastModifiedBy("system");
-        endorsement.setAudLastModifiedDate(LocalDateTime.now());
+        endorsementResponseDto.setSkill(skill);
+        endorsementResponseDto.setActualScore(score);
+        endorsementResponseDto.setAdjustedScore(adjustedScore);
 
-        endorsementRepository.save(endorsement);
-
-        return new EndorsementResponseDto(skill, score, adjustedScore, endorsement.getReason());
+        return endorsementResponseDto;
     }
 }

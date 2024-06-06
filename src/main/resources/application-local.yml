@@ -1,7 +1,14 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://${RDS_HOSTNAME:localhost}:${RDS_PORT:5432}/${RDS_DB_NAME:skill_based_endorsement_relevance_system}
-    username: ${RDS_USERNAME:postgres}
-    password: ${RDS_PASSWORD:mysecretpassword}
-  jpa:
-    show-sql: true
+  data:
+    neo4j:
+      repositories:
+        type: IMPERATIVE
+      database: neo4j
+  neo4j:
+    uri: bolt://localhost:7687
+    authentication:
+      username: neo4j
+      password: password
+
+hop-weight: 0.9
+

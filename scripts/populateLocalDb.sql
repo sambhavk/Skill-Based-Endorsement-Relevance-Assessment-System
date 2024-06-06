@@ -1,119 +1,64 @@
-INSERT INTO public.user_profile VALUES (1, 'test123', 'person1', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_profile VALUES (2, 'test124', 'person2', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_profile VALUES (3, 'test125', 'person3', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_profile VALUES (4, 'test126', 'person4', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_profile VALUES (5, 'test127', 'person5', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_profile VALUES (6, 'test128', 'person6', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_profile VALUES (7, 'test129', 'person7', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
 
+CREATE (Alice:User {userId: 'u1', name: 'Alice', experience_years: 10}),
+        (Bob:User {userId: 'u2', name: 'Bob', experience_years: 5}),
 
-INSERT INTO public.user_experience VALUES (1, 1, 'Google', '2022-05-23', '2024-05-23', 'IT', 'backend development', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (2, 1, 'Amazon', '2020-05-23', '2022-05-22', 'IT', 'frontend development', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (3, 2, 'Microsoft', '2022-05-23', '2024-05-23', 'IT', 'Devops', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (4, 2, 'Netflix', '2020-05-23', '2022-05-22', 'IT', 'QA', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (5, 3, 'Apple', '2023-05-23', null, 'IT', 'Product Manager', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (6, 3, 'Meta', '2020-05-23', '2022-05-22', 'IT', 'QA', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (7, 4, 'Uber', '2023-05-23', null, 'Sales', 'Category Manager', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (8, 4, 'Flipkart', '2020-05-23', '2022-05-22', 'IT', 'backend development', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (9, 5, 'Paytm', '2022-05-23', '2024-05-23', 'Advertising', 'Copy writing', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (10, 5, 'Zomato', '2020-05-23', '2022-05-22', 'Design', 'Graphic Design', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (11, 6, 'Zerodha', '2022-05-23', '2024-05-23', 'IT', 'backend development', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (12, 6, 'Nutanix', '2020-05-23', '2022-05-22', 'IT', 'backend development', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (13, 7, 'MakeMyTrip', '2022-05-23', '2024-05-23', 'IT', 'backend development', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_experience VALUES (14, 7, 'SkyScanner', '2020-05-23', '2022-05-22', 'IT', 'backend development', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
+         (pl:Category {categoryId: 'c1', name : 'Programming Languages'}),
+         (fw:Category {categoryId: 'c1', name : 'Frameworks'}),
+         (db:Category {categoryId: 'c1', name : 'Databases'}),
+         (tl:Category {categoryId: 'c1', name : 'Tools'}),
 
+         (java:Skill {skillId: 's1', name: 'Java'}),
+        	(scala:Skill {skillId: 's3', name: 'Scala'}),
+        	(python:Skill {skillId: 's4', name: 'Python'}),
+        	(javascript:Skill {skillId: 's14', name: 'Javascript'}),
 
-INSERT INTO public.user_skills VALUES (1,1, 1, 'Java', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (2,1, 2, 'ReactJs', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (3,2, 3, 'Bash', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (4,2, 4, 'Testing', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (5,3, 5, 'Google Sheet', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (6,3, 6, 'Automation', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (7,4, 7, 'Vendor Negotiation', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (8,4, 8, 'Java', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (9,5, 9, 'Copy Writing', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (10,5, 10, 'PhotoShop', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (11,6, 11, 'Java', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (12,6, 12, 'Kotlin', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (13,7, 13, 'Scala', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.user_skills VALUES (14,7, 14, 'RubyOnRails', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
+         (spring:Skill {skillId: 's5', name: 'Spring Boot'}),
+         (django:Skill {skillId: 's6', name: 'Django'}),
+         (react:Skill {skillId: 's7', name: 'ReactJS'}),
+         (akka:Skill {skillId: 's15', name: 'Akka'}),
 
+         (neo4j:Skill {skillId: 's8', name : 'Neo4j'}),
+         (mysql:Skill {skillId: 's9', name : 'MySQL'}),
+         (mongo:Skill {skillId: 's10', name : 'MongoDB'}),
 
-INSERT INTO public.skill_relationship VALUES ('Java', 'Python', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'Scala', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'Kotlin', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'RubyOnRails', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'Scala', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'Kotlin', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'RubyOnRails', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Scala', 'Kotlin', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Scala', 'RubyOnRails', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Kotlin', 'RubyOnRails', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'ReactJs', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Scala', 'ReactJs', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'ReactJs', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('RubyOnRails', 'ReactJs', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Kotlin', 'ReactJs', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'Bash', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Scala', 'Bash', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'Bash', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('RubyOnRails', 'Bash', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Kotlin', 'Bash', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('ReachJs', 'Bash', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'Automation', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Scala', 'Automation', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'Automation', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('RubyOnRails', 'Automation', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Kotlin', 'Automation', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('ReachJs', 'Automation', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Bash', 'Automation', 'CLOSELY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'Testing', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Scala', 'Testing', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'Testing', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('RubyOnRails', 'Testing', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Kotlin', 'Testing', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('ReachJs', 'Testing', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Bash', 'Testing', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Automation', 'Testing', 'DISTANTLY_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'Google Sheet', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Scala', 'Google Sheet', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'Google Sheet', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('RubyOnRails', 'Google Sheet', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Kotlin', 'Google Sheet', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('ReachJs', 'Google Sheet', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Bash', 'Google Sheet', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Automation', 'Google Sheet', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Testing', 'Google Sheet', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'Vendor Negotiation', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Scala', 'Vendor Negotiation', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'Vendor Negotiation', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('RubyOnRails', 'Vendor Negotiation', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Kotlin', 'Vendor Negotiation', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('ReachJs', 'Vendor Negotiation', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Bash', 'Vendor Negotiation', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Automation', 'Vendor Negotiation', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Testing', 'Vendor Negotiation', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Google Sheet', 'Vendor Negotiation', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Scala', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('RubyOnRails', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Kotlin', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('ReachJs', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Bash', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Automation', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Testing', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Google Sheet', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Vendor Negotiation', 'Copy Writing', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Java', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Scala', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Python', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('RubyOnRails', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Kotlin', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('ReachJs', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Bash', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Automation', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Testing', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Google Sheet', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Vendor Negotiation', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
-INSERT INTO public.skill_relationship VALUES ('Copy Writing', 'PhotoShop', 'NOT_RELATED', 'SYSTEM', '2024-05-23 21:57:26.288', 'SYSTEM', '2024-05-23 21:57:26.288');
+         (git:Skill {skillId: 's11', name : 'Git'}),
+         (docker:Skill {skillId: 's12', name : 'Docker'}),
+         (jenkins:Skill {skillId: 's13', name : 'Jenkins'}),
+
+         (spring)-[:RELATED_TO]->(java),
+         (java)-[:RELATED_TO]->(spring),
+         (django)-[:RELATED_TO]->(python),
+         (python)-[:RELATED_TO]->(django),
+         (react)-[:RELATED_TO]->(javascript),
+         (javascript)-[:RELATED_TO]->(react),
+         (akka)-[:RELATED_TO]->(scala),
+         (scala)-[:RELATED_TO]->(akka),
+
+        (pl)-[:INCLUDES]->(java),
+         (pl)-[:INCLUDES]->(scala),
+         (pl)-[:INCLUDES]->(python),
+         (pl)-[:INCLUDES]->(javascript),
+
+        (fw)-[:INCLUDES]->(spring),
+         (fw)-[:INCLUDES]->(django),
+         (fw)-[:INCLUDES]->(react),
+
+        (db)-[:INCLUDES]->(neo4j),
+         (db)-[:INCLUDES]->(mysql),
+         (db)-[:INCLUDES]->(mongo),
+
+        (tl)-[:INCLUDES]->(git),
+         (tl)-[:INCLUDES]->(docker),
+         (tl)-[:INCLUDES]->(jenkins),
+
+        (Alice)-[:HAS_SKILL]->(java),
+        (Alice)-[:HAS_SKILL]->(react),
+        (Alice)-[:HAS_SKILL]->(docker),
+        (Bob)-[:HAS_SKILL]->(scala),
+        (Bob)-[:HAS_SKILL]->(akka),
+        (Bob)-[:HAS_SKILL]->(docker),
+
+        (Alice)-[:COWORKER {timeline: 'PRESENT'}]->(Bob),
+        (Bob)-[:COWORKER {timeline: 'PRESENT'}]->(Alice),
+
+        (Alice)-[:ENDORSES {skill: 'Docker', score: 8.5, systemAdjustedScore: 7.87623, reason: 'test entry'}]->(Bob);

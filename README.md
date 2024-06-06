@@ -10,8 +10,7 @@ https://docs.google.com/document/d/1vsI4W4_KHoHw1mHswlcZ695bgBrMJPR9ODhOZYqCmhE/
 ### Requirements
 1. Intellij IDE
 2. Open JDK >= 17
-3. Docker
-4. Maven - installed locally (or installed usually with IntelliJ)
+3. Maven - installed locally (or installed usually with IntelliJ)
 
 ### Setup IDE
 Go to Run -> Edit Configurations -> Environment Variables:
@@ -20,11 +19,13 @@ add the following:
 SPRING_PROFILES_ACTIVE=local
 ```
 
-### Setup local db on docker instance
-1. bring up local postgres docker instance
+### Setup local db
+1. Download neo4j db in local
 
-   ```docker-compose up -d```
+   ```https://neo4j.com/download/```
 
-2. Apply dummy data to local db by copying insert statements from ./scripts/populateLocalDb.sql file and run it in your local db
+2. Open neo4j application and create a dbms service and start the database with username as neo4j (default) and password as password 
+
+3. Apply dummy data to local db by executing ./scripts/populateLocalDb.sql file in your local db
    
-* run the application from IDE
+* Run the application from IDE

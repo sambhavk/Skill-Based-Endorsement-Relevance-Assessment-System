@@ -1,44 +1,32 @@
 package com.fabhotels.round2.utils;
 
-import com.fabhotels.round2.domain.Endorsement;
-import com.fabhotels.round2.domain.UserExperience;
-import com.fabhotels.round2.domain.UserProfile;
+import com.fabhotels.round2.dto.EndorsementResponseDto;
+import com.fabhotels.round2.repository.UserRepository;
+import com.fabhotels.round2.service.WeightService;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 @Component
 public class CoWorkerCohort implements Cohort {
+
+    private final UserRepository userRepository;
+
+    public CoWorkerCohort(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
-    public float weightage(UserProfile reviewee, UserProfile reviewer, String skill, Endorsement endorsement) {
-        UserExperience currentRevieweeExperience =
-                reviewee.getExperiences()
-                        .stream()
-                        .filter(userExperience -> Objects.isNull(userExperience.getEndTime()))
-                        .toList().get(0);
+    public float weightage(String skill, String reviewer, String reviewee, EndorsementResponseDto endorsementResponseDto) {
+        float coWorkingStatus = (float) userRepository.findCoWorkerStatus(reviewer, reviewee);
 
-        boolean isReviewerCoworkerOfReviewee = reviewer.getExperiences()
-                .stream()
-                .map(UserExperience::getCompanyName)
-                .anyMatch(reviewerCompany -> reviewerCompany.contentEquals(currentRevieweeExperience.getCompanyName()));
-
-        if(isReviewerCoworkerOfReviewee){
-            boolean isReviewerPresentCoworkerOfReviewee = reviewer.getExperiences()
-                    .stream()
-                    .filter(reviewerExperience -> reviewerExperience.getCompanyName().contentEquals(currentRevieweeExperience.getCompanyName()))
-                    .anyMatch(reviewerExperience -> Objects.isNull(reviewerExperience.getEndTime()));
-
-            if(isReviewerPresentCoworkerOfReviewee) {
-                endorsement.setReason(endorsement.getReason() + " || Co-working Status: Reviewee and reviewer are presently co-worker");
-                return 1f;
-            }
-            else {
-                endorsement.setReason(endorsement.getReason() + " || Co-working Status: Reviewee and reviewer were co-workers but not in the present");
-                return 0.7f;
-            }
-        } else {
-            endorsement.setReason(endorsement.getReason() + " || Co-working Status: Reviewee and reviewer were never co-workers");
-            return 0.5f;
+        if(coWorkingStatus > 1) {
+            endorsementResponseDto.setReason(" Reviewer and reviewee were never co-workers but there are some mutual users between them");
+            return coWorkingStatus * WeightService.hopWeight;
+        }
+        else {
+            if(coWorkingStatus == 1f) endorsementResponseDto.setReason(" Reviewer and reviewee are co-workers");
+            else if(coWorkingStatus == 0.7f) endorsementResponseDto.setReason(" Reviewer and reviewee were co-workers in the past");
+            else endorsementResponseDto.setReason(" Reviewer and reviewee were never co-workers and there are no mutual users between them");
+            return coWorkingStatus;
         }
     }
 }

@@ -16,16 +16,16 @@ public class EndorsementController {
     private EndorsementService endorsementService;
 
     @GetMapping("/{userId}")
-    public List<SkillEndorsementsDto> getEndorsements(@PathVariable Long userId) {
+    public List<SkillEndorsementsDto> getEndorsements(@PathVariable String userId) {
         return endorsementService.getEndorsementsForUser(userId);
     }
 
     @PostMapping
-    public EndorsementResponseDto postEndorsement(@RequestParam Long revieweeUserId,
-                                                  @RequestParam Long reviewerUserId,
+    public EndorsementResponseDto postEndorsement(@RequestParam String reviewee,
+                                                  @RequestParam String reviewer,
                                                   @RequestParam String skill,
                                                   @RequestParam Float score) {
-        return endorsementService.endorseUser(revieweeUserId, reviewerUserId, skill, score);
+        return endorsementService.endorseUser(reviewee, reviewer, skill, score);
     }
 }
 

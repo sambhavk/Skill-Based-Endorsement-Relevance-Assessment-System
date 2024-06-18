@@ -26,7 +26,7 @@ public class SkillClosenessCohort implements Cohort {
 
     @Override
     public float weightage(String endorsedSkill, String reviewer, String reviewee, EndorsementResponseDto endorsementResponseDto) {
-        User reviewerObject = userRepository.findById(reviewer).orElseThrow(RuntimeException::new);
+        User reviewerObject = userRepository.findById(reviewer).orElseThrow(IllegalCallerException::new);
         List<String> reviewerSkills = reviewerObject.getSkills().stream().map(Skill::getName).toList();
 
         if (reviewerSkills.contains(endorsedSkill)) {
@@ -56,6 +56,6 @@ public class SkillClosenessCohort implements Cohort {
         if (minHops == 0) endorsementResponseDto.setReason(endorsementResponseDto.getReason() + " || Reviewer does not has the endorsed skill in his/her skill set and has no skills related to it");
         else endorsementResponseDto.setReason(endorsementResponseDto.getReason() + " || Reviewer does not has the endorsed skill in his/her skill set but has skills related to it");
 
-        return minHops == 0 ? 0.1f : minHops * WeightService.hopWeight;
+        return minHops == 0 ? 0.1f : (float) Math.pow(WeightService.hopWeight, minHops);
     }
 }

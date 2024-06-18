@@ -20,7 +20,7 @@ public class CoWorkerCohort implements Cohort {
 
         if(coWorkingStatus > 1) {
             endorsementResponseDto.setReason(" Reviewer and reviewee were never co-workers but there are some mutual users between them");
-            return coWorkingStatus * WeightService.hopWeight;
+            return (float) Math.pow(WeightService.hopWeight, coWorkingStatus);
         }
         else {
             if(coWorkingStatus == 1f) endorsementResponseDto.setReason(" Reviewer and reviewee are co-workers");

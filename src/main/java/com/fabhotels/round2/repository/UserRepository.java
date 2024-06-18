@@ -1,6 +1,5 @@
 package com.fabhotels.round2.repository;
 
-import com.fabhotels.round2.node.Skill;
 import com.fabhotels.round2.node.User;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
@@ -8,13 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Repository
 public interface UserRepository extends Neo4jRepository<User, String> {
-
-    @Query("MATCH (u:User)-[:HAS_SKILL]->(s:Skill) WHERE u.userId = $userId RETURN s.skillId AS skillId, s.name AS name")
-    Set<Skill> findSkillsByUserId(String userId);
 
     @Query("""
             OPTIONAL MATCH (u1:User {userId: $reviewer})
@@ -34,14 +29,14 @@ public interface UserRepository extends Neo4jRepository<User, String> {
     double findCoWorkerStatus(String reviewer, String reviewee);
 
     @Query("""
-            OPTIONAL MATCH (u1:User {userId: $reviewer})
-            OPTIONAL MATCH (u2:User {userId: $reviewee})
-            WITH u1, u2
-            OPTIONAL MATCH (u1)-[endorsement:ENDORSES {skill: $skill}]->(u2)
-            WITH u1, u2, endorsement
-            FOREACH (ignoreMe IN CASE WHEN u1 IS NOT NULL AND u2 IS NOT NULL AND endorsement IS NULL THEN [1] ELSE [] END |
-                CREATE (u1)-[:ENDORSES {score: $score, skill: $skill, systemAdjustedScore: $systemAdjustedScore, reason: $reason}]->(u2)
-            )
+             OPTIONAL MATCH (u1:User {userId: $reviewer})
+             OPTIONAL MATCH (u2:User {userId: $reviewee})
+             WITH u1, u2
+             FOREACH (ignoreMe IN CASE WHEN u1 IS NOT NULL AND u2 IS NOT NULL THEN [1] ELSE [] END |
+                 MERGE (u1)-[e:ENDORSES {skill: $skill}]->(u2)
+                 ON CREATE SET e.score = $score, e.systemAdjustedScore = $systemAdjustedScore, e.reason = $reason
+                 ON MATCH SET e.score = $score, e.systemAdjustedScore = $systemAdjustedScore, e.reason = $reason
+             )
             """)
     void createEndorsement(String reviewer, String reviewee, Float score, String skill, Float systemAdjustedScore, String reason);
 

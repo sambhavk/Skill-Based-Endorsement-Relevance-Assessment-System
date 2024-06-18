@@ -2,10 +2,17 @@
 CREATE (Alice:User {userId: 'u1', name: 'Alice', experience_years: 10}),
         (Bob:User {userId: 'u2', name: 'Bob', experience_years: 5}),
 
-         (pl:Category {categoryId: 'c1', name : 'Programming Languages'}),
-         (fw:Category {categoryId: 'c1', name : 'Frameworks'}),
-         (db:Category {categoryId: 'c1', name : 'Databases'}),
-         (tl:Category {categoryId: 'c1', name : 'Tools'}),
+         (skillRoot1:Category {categoryId: 'c1', name : 'Software Development'}),
+
+         (pl:Category {categoryId: 'c2', name : 'Programming Languages'}),
+         (fw:Category {categoryId: 'c3', name : 'Frameworks'}),
+         (db:Category {categoryId: 'c4', name : 'Databases'}),
+         (tl:Category {categoryId: 'c5', name : 'Tools'}),
+
+         (skillRoot1)-[:INCLUDES]->(pl),
+           (skillRoot1)-[:INCLUDES]->(fw),
+           (skillRoot1)-[:INCLUDES]->(db),
+           (skillRoot1)-[:INCLUDES]->(tl),
 
          (java:Skill {skillId: 's1', name: 'Java'}),
         	(scala:Skill {skillId: 's3', name: 'Scala'}),
